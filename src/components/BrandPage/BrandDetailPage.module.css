@@ -1,0 +1,95 @@
+/* src/components/Brands/BrandsPage.module.css */
+.pageWrapper {
+    padding: 160px 40px 100px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+  
+  .mainHeading {
+    font-family: 'Bruno Ace', sans-serif;
+    font-size: 70px;
+    color: var(--color-white);
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+  .grid {
+    display: grid;
+    /* === CHANGE 1: DEFINING A 3-COLUMN GRID === */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  /* === CHANGE 2: MAKE SPECIFIC CARDS WIDER === */
+  /* This targets the 2nd, 5th, 8th, etc., cards and makes them span 2 columns */
+  .card:nth-child(3n-1) {
+    grid-column: span 2;
+  }
+  
+  .card {
+    text-decoration: none;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    display: block;
+  }
+  
+  .imageWrapper {
+    /* === CHANGE 3: ADJUSTED ASPECT RATIO FOR BETTER FIT === */
+    aspect-ratio: 1.25 / 1; 
+    overflow: hidden;
+  }
+  
+  .cardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+  
+  .card:hover .cardImage {
+    transform: scale(1.05);
+    filter: brightness(0.8);
+  }
+  
+  .cardOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px 20px 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    text-align: left;
+  }
+  
+  .cardTitle {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-white);
+    margin: 0;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover .cardTitle {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  /* --- RESPONSIVE STYLES --- */
+  @media (max-width: 810px) {
+    .grid { 
+      grid-template-columns: 1fr; /* Stack everything into a single column on mobile */
+    }
+    
+    /* Reset the column span on mobile */
+    .card:nth-child(3n-1) {
+      grid-column: span 1;
+    }
+  
+    .mainHeading { font-size: 44px; }
+  }

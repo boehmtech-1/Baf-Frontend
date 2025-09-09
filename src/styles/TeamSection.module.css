@@ -1,0 +1,76 @@
+/* src/components/TeamSection/TeamSection.module.css */
+.teamSection {
+    display: flex;
+    justify-content: center;
+    padding: 114px 25px;
+    background-color: var(--color-background);
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 75px;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  .headingWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 620px;
+    text-align: center;
+  }
+  
+  .tag {
+    font-family: 'Inter Variable', sans-serif;
+    font-size: 16px;
+    color: #757575;
+    letter-spacing: -0.05em;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 2px 10px;
+    border-radius: 4px;
+    background-color: transparent; /* Assuming a simple tag style */
+  }
+  
+  .heading {
+    font-family: 'Bruno Ace', sans-serif;
+    font-size: 56px;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    color: var(--color-white);
+    margin: 0;
+  }
+  
+  .grid {
+    display: grid;
+    width: 100%;
+    gap: 22px;
+    /* Desktop: 4 columns */
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  /* --- RESPONSIVE STYLES --- */
+  @media (max-width: 1024px) {
+    /* Tablet: 2 columns */
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .teamSection {
+      padding: 80px 20px;
+    }
+    .heading {
+      font-size: 40px;
+    }
+    /* Mobile: 1 column */
+    .grid {
+      grid-template-columns: 1fr;
+      max-width: 350px; /* To prevent stretching on wider mobile screens */
+    }
+  }

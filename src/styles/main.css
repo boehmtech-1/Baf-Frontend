@@ -1,0 +1,29 @@
+/* Hide Unicorn Studio watermark - more comprehensive approach */
+[data-us-watermark],
+[class*="watermark"],
+[class*="unicorn"],
+[id*="watermark"],
+[id*="unicorn"],
+[class*="us-"],
+[data-us-*],
+div[style*="watermark"],
+div[style*="unicorn"],
+iframe[src*="unicorn"],
+iframe[src*="watermark"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Hide any element with watermark text using attribute selectors */
+[title*="unicorn"],
+[alt*="unicorn"],
+[aria-label*="unicorn"] {
+  display: none !important;
+}
+
+/* Force hide any remaining watermark elements */
+* {
+  background-image: none !important;
+}

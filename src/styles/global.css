@@ -1,0 +1,40 @@
+/* This file imports all necessary fonts for the entire site from Google Fonts and Fontshare.
+  It also defines a clear system for colors and typography using CSS variables.
+*/
+
+/* --- FONT IMPORTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Bruno+Ace&family=Instrument+Serif&family=Inter+Tight&family=Inter:wght@400;700&family=Plus+Jakarta+Sans:wght@500;600&family=Poppins:wght@400;700&display=swap');
+
+/* This special @import is for 'Clash Display' which is not on Google Fonts. */
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap');
+
+
+/* --- TYPOGRAPHY & COLOR VARIABLES (THEME) --- */
+:root {
+  /* Colors */
+  --color-background: rgb(0, 0, 0);
+  --color-text-primary: rgb(255, 253, 235);
+  --color-text-secondary: rgba(255, 255, 255, 0.65);
+  --color-border: rgba(255, 255, 255, 0.2);
+  --color-white: rgb(255, 255, 255);
+
+  /* Fonts - This creates our new font system */
+  --font-display: 'Bruno Ace', sans-serif;       /* For major headings like "Brands", "Exquisite Living" */
+  --font-heading: 'Clash Display', sans-serif;  /* For secondary headings and card titles */
+  --font-subheading: 'Antonio', sans-serif;    /* For content headings like "Key Spaces" */
+  --font-body: 'Inter', sans-serif;             /* For all paragraph text */
+  --font-ui: 'Poppins', sans-serif;             /* For buttons and UI elements */
+  --font-special: 'Instrument Serif', serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+}
+
+* {
+  box-sizing: border-box;
+}
+

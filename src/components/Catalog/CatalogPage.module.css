@@ -1,0 +1,57 @@
+/* src/components/Catalog/CatalogPage.module.css */
+.pageWrapper {
+    padding: 160px 40px 100px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+  .mainHeading {
+    font-family: 'Bruno Ace', sans-serif;
+    font-size: 70px;
+    color: var(--color-white);
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .card:hover {
+      transform: scale(1.03);
+  }
+  .cardImage {
+    width: 100%;
+    aspect-ratio: 443 / 311;
+    object-fit: cover;
+    display: block;
+  }
+  .cardOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px 20px 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    text-align: left;
+  }
+  .cardTitle {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-white);
+    margin: 0;
+  }
+  @media (max-width: 810px) {
+    .grid { grid-template-columns: 1fr; }
+    .mainHeading { font-size: 44px; }
+  }

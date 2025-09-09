@@ -1,0 +1,72 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    width: 100%;
+    overflow: hidden;
+    text-align: left;
+  }
+  
+  .image {
+    width: 100%;
+    aspect-ratio: 1 / 1.25;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover .image {
+    transform: scale(1.03);
+  }
+  
+  .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px; /* Small padding to align with image */
+  }
+  
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .name {
+    font-family: 'Bruno Ace', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    color: var(--color-white);
+    margin: 0;
+  }
+  
+  .role {
+    font-family: 'Inter Variable', sans-serif;
+    font-size: 16px;
+    color: #757575;
+    letter-spacing: -0.05em;
+    margin: 0;
+  }
+  
+  .socialLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: var(--color-white);
+    transition: all 0.3s ease;
+  }
+  
+  .socialLink:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .socialIcon {
+    width: 14px;
+    height: 14px;
+  }

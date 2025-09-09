@@ -1,0 +1,42 @@
+/* src/components/ServicesSection/ServicesSection.module.css */
+.section {
+    padding: 100px 35px;
+    background-color: var(--color-background);
+  }
+  
+  .headingWrapper {
+    text-align: center;
+    margin-bottom: 150px;
+  }
+  
+  .mainHeading {
+    font-family: 'Bruno Ace', sans-serif;
+    font-size: 70px;
+    color: var(--color-white);
+    margin: 0;
+  }
+  
+  .cardsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    max-width: 1170px;
+    margin: 0 auto;
+  }
+  
+  /* --- RESPONSIVE STYLES --- */
+  @media (max-width: 810px) {
+    .section {
+      padding: 100px 20px;
+    }
+    .mainHeading {
+      font-size: 44px;
+    }
+    .headingWrapper {
+      margin-bottom: 50px;
+    }
+    .cardsContainer {
+      gap: 32px;
+    }
+  }

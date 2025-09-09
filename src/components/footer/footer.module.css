@@ -1,0 +1,170 @@
+/* src/components/Footer/Footer.module.css */
+
+.footer {
+  background-color: var(--color-background);
+  padding: 0 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  position: relative; /* Make sure the footer is positioned so ::after can be absolute relative to it */
+}
+
+/* --- NEW RULE FOR BACKGROUND WATERMARK TEXT --- */
+.footer::after {
+  content: 'BAB AL FOUZ';
+  position: absolute;
+  top: 85%; /* adjusted from 98% to bring watermark back into view */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-primary);
+  font-size: clamp(8vw, 14vw, 16vw);
+  font-weight: 700;
+  background: linear-gradient(to bottom, #dfdfdf0f 0%, #00000000 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;              
+  -webkit-text-fill-color: transparent; 
+  pointer-events: none;
+  white-space: nowrap; 
+  line-height: 1;      
+  z-index: 0;
+}
+
+.container {
+width: 100%;
+max-width: 1040px;
+padding: 80px 0; /* increased from 60px 0 for more container height */
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+min-height: 700px; /* increased from 542px for larger container */
+}
+
+.content {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 32px;
+text-align: center;
+}
+
+.heading {
+font-family: var(--font-primary);
+font-weight: 700;
+color: var(--color-text-secondary);
+margin: 0;
+max-width: 840px;
+line-height: 1.2;
+font-size: 44px; /* Phone size */
+}
+
+.ctaGroup {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 20px;
+}
+
+.socials {
+display: flex;
+align-items: center;
+gap: 0; /* separators handle spacing */
+}
+
+.socialItem {
+display: flex;
+align-items: center;
+}
+
+.socialIconLink {
+color: var(--color-white);
+transition: color 0.3s ease;
+padding: 8px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.socialIconLink:hover {
+color: var(--color-text-secondary);
+background-color: rgba(255, 255, 255, 0.1);
+}
+
+.socialIcon {
+width: 24px;
+height: 24px;
+}
+
+
+.socialSeparator {
+width: 2px;
+height: 24px;
+margin: 0 20px;
+background: rgba(255, 255, 255, 0.282); /* plain white color with 50% opacity */
+opacity: 0.7;
+}
+
+.bottomBar {
+width: 100%;
+max-width: 1200px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+padding: 20px 0;
+padding-top: 24px; /* keeps separation after removing border */
+gap: 16px;
+font-size: 8px;
+}
+
+.copyright {
+margin: 0;
+color: var(--color-text-secondary);
+}
+
+.legalNav {
+display: flex;
+gap: 16px;
+}
+
+.legalLink {
+color: var(--color-text-secondary);
+text-decoration: none;
+transition: text-decoration 0.3s ease;
+}
+
+.legalLink:hover {
+text-decoration: underline;
+}
+
+/* --- Responsive Styles (Tablet and up) --- */
+@media (min-width: 768px) {
+.heading {
+  font-size: 64px; /* Tablet size */
+}
+
+.ctaGroup {
+  flex-direction: row;
+  gap: 40px;
+}
+  
+.bottomBar {
+  flex-direction: row;
+  padding: 20px;
+}
+}
+
+/* --- Responsive Styles (Desktop and up) --- */
+@media (min-width: 1200px) {
+.heading {
+  font-size: 70px; /* Desktop size */
+}
+}
+
+@media (max-width: 767px) {
+  .bottomBar { border-top: none; }
+}
