@@ -1,70 +1,132 @@
 // src/components/Founder.jsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../../styles/Founder.module.css";
 
 const Founder = () => {
+  const [founderData, setFounderData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchFounderData = async () => {
+      try {
+        const response = await fetch('/api/founder?limit=1');
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch founder data');
+        }
+
+        const data = await response.json();
+        console.log('Founder API Response:', data);
+
+        if (data.docs && data.docs.length > 0) {
+          setFounderData(data.docs[0]);
+        } else {
+          throw new Error('No founder data found');
+        }
+      } catch (error) {
+        console.error('Error fetching founder data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFounderData();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className={styles.founderSection}>
+        <div className={styles.container}>
+          <div style={{ textAlign: 'center', padding: '2rem', color: '#999' }}>
+            Loading founder information...
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className={styles.founderSection}>
+        <div className={styles.container}>
+          <div style={{ textAlign: 'center', padding: '2rem', color: '#ff6b6b' }}>
+            Error: {error}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!founderData) {
+    return (
+      <section className={styles.founderSection}>
+        <div className={styles.container}>
+          <div style={{ textAlign: 'center', padding: '2rem', color: '#999' }}>
+            No founder information available.
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className={styles.founderSection}>
       <div className={styles.container}>
-        
+
         {/* Left Content */}
         <div className={styles.leftContent}>
           {/* Heading */}
           <div>
             <h2 className={styles.heading}>Our Founder</h2>
             <p className={styles.description}>
-              Lorem ipsum is a dummy text commonly used in the english language.
+              {founderData.description}
             </p>
           </div>
 
           {/* Skills */}
-          <div className={styles.skillsSection}>
-            <div className={styles.skillsWrapper}>
-              {[
-                "Product Design",
-                "Brand Identity Design",
-                "Design",
-                "Branding",
-                "Brand Development",
-                "Ideator",
-                "Scaling",
-              ].map((skill, index) => (
-                <span key={index} className={styles.skillTag}>
-                  {skill}
-                </span>
-              ))}
+          {founderData.skills && founderData.skills.length > 0 && (
+            <div className={styles.skillsSection}>
+              <div className={styles.skillsWrapper}>
+                {founderData.skills.map((skillItem, index) => (
+                  <span key={index} className={styles.skillTag}>
+                    {skillItem.skill}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Experience */}
-          <div className={styles.experienceSection}>
-            <div className={styles.experienceGrid}>
-              <React.Fragment>
-                <div className={styles.role}>Baab Al Fouz</div>
-                <div className={styles.company}>GreenLeaf Co</div>
-                <div className={styles.time}>Currently</div>
-              </React.Fragment>
-              <React.Fragment>
-                <div className={styles.role}>Brand Designer</div>
-                <div className={styles.company}>UrbanFit Studio</div>
-                <div className={styles.time}>2023-24</div>
-              </React.Fragment>
-              <React.Fragment>
-                <div className={styles.role}>Package Designer</div>
-                <div className={styles.company}>GreenK Studio</div>
-                <div className={styles.time}>2020-22</div>
-              </React.Fragment>
+          {founderData.experience && founderData.experience.length > 0 && (
+            <div className={styles.experienceSection}>
+              <div className={styles.experienceGrid}>
+                {founderData.experience.map((exp, index) => (
+                  <React.Fragment key={index}>
+                    <div className={styles.role}>{exp.role}</div>
+                    <div className={styles.company}>{exp.company}</div>
+                    <div className={styles.time}>{exp.time}</div>
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* Right Image */}
         <div className={styles.rightImage}>
-          <img
-            src="/founder.jpg" // replace with your image path
-            alt="Founder"
-            className={styles.image}
-          />
+          {founderData.image?.url ? (
+            <img
+              src={founderData.image.url}
+              alt={founderData.name || "Founder"}
+              className={styles.image}
+            />
+          ) : (
+            <div className={styles.imagePlaceholder}>
+              No image available
+            </div>
+          )}
         </div>
       </div>
     </section>

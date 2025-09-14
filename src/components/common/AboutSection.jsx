@@ -17,6 +17,21 @@ const AboutSection = ({ aboutData }) => {
   const contentY = useTransform(scrollYProgress, [0.7, 1], ['50px', '0px']);
   const contentOpacity = useTransform(scrollYProgress, [0.7, 1], [0, 1]);
 
+  const rawCms = import.meta.env.VITE_CMS_URL;
+  const cmsUrl = rawCms.replace(/\/+$/, '');
+
+  let imageUrl;
+  if (typeof aboutData?.image === 'string') {
+    imageUrl = aboutData.image;
+  } else if (aboutData?.image?.url) {
+    // The API provides a full, absolute URL in `aboutData.image.url`.
+    // We use this URL directly. A cache-busting parameter is added
+    // using `updatedAt` to ensure the latest image is always displayed.
+    imageUrl = `${aboutData.image.url}?v=${new Date(aboutData.image.updatedAt).getTime()}`;
+  } else {
+    imageUrl = "https://framerusercontent.com/images/m5jsKAinALaB8jAlKLQAxA6GitQ.jpg";
+  }
+
   return (
     <section ref={sectionRef} className="about-section">
       <div className="sticky-container">
@@ -35,7 +50,7 @@ const AboutSection = ({ aboutData }) => {
           style={{ scale: imageScale }}
         >
           <img
-            src={aboutData?.image || "https://framerusercontent.com/images/m5jsKAinALaB8jAlKLQAxA6GitQ.jpg"}
+            src={imageUrl}
             alt="Woman in a modern interior"
             className="about-image"
           />
@@ -48,10 +63,10 @@ const AboutSection = ({ aboutData }) => {
       >
         <div className="content">
           <h3 className="content-title">
-            {aboutData?.description1 || "Nestled in the heart of Baghdad, Bab Al Faouz — meaning The Gate of Omens — brings a fresh perspective to interior design."}
+            {aboutData?.description1}
           </h3>
           <p className="content-text">
-            {aboutData?.description2 || "We create refined living spaces that blend elegance, comfort, and purpose, unlocking a world of exquisite living experiences for our clients."}
+            {aboutData?.description2}
           </p>
           <GlossyButton href="/about">Know More</GlossyButton>
         </div>

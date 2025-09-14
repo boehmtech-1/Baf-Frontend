@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'https://baf-backend-18y5.onrender.com',
+  // The baseURL is removed because we are using a proxy in development.
+  // The request path '/api/team' will be automatically proxied by Vite.
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
@@ -22,11 +23,41 @@ export function useBafData() {
         setLoading(true);
         console.log("🔄 Fetching data from backend...");
 
-        const response = await instance.get('/');
+        // Fetch all necessary data for the homepage concurrently.
+        // Using Promise.allSettled to prevent one failed request from blocking others.
+        const results = await Promise.allSettled([
+          instance.get('/api/AboutSection?depth=1'),
+          instance.get('/api/events?limit=10&depth=1'),
+          instance.get('/api/brands?depth=1'),
+        ]);
 
-        if (response.data) {
-          console.log('✅ Data fetched successfully:', response.data);
-          setData(response.data);
+        const [aboutResult, eventsResult, brandsResult] = results;
+
+        // --- DEBUGGING LOGS ---
+        console.log('API Response for /api/AboutSection:', aboutResult);
+        console.log('API Response for /api/events:', eventsResult);
+        console.log('API Response for /api/brands:', brandsResult);
+        // --- END DEBUGGING LOGS ---
+
+        const combinedData = {
+          home: {
+            about: aboutResult.status === 'fulfilled' && aboutResult.value.data.docs.length > 0
+              ? aboutResult.value.data.docs[0]
+              : null,
+          },
+          events: eventsResult.status === 'fulfilled' ? eventsResult.value.data.docs : [],
+          brands: brandsResult.status === 'fulfilled' ? brandsResult.value.data.docs : [],
+        };
+
+        if (combinedData) {
+          console.log('✅ Data fetched successfully:', combinedData);
+          results.forEach((result, index) => {
+            if (result.status === 'rejected') {
+              const urls = ['/api/AboutSection', '/api/events', '/api/brands'];
+              console.error(`❌ A data fetch request failed for ${urls[index]}:`, result.reason.message);
+            }
+          });
+          setData(combinedData);
           setError(null);
         }
       } catch (err) {

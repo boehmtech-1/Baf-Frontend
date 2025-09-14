@@ -1,95 +1,167 @@
-/* src/components/Brands/BrandsPage.module.css */
+/* BrandDetailPage.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
 .pageWrapper {
-    padding: 160px 40px 100px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    min-height: 100vh;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.mainHeading {
+  font-family: 'Bruno ace', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.mainImage {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 3rem;
+}
+
+.contentArea {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+  text-align: left;
+}
+
+/* Style for the main content */
+.contentArea>div:first-child {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: #ffffff;
+  font-size: 0.7rem;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.contentArea>div:first-child p {
+  margin-bottom: 1.2rem;
+  font-size: 0.7rem;
+  font-weight: 300;
+}
+
+.contentArea>div:first-child h2 {
+  font-family: 'Antonio', sans-serif;
+  font-size: 4rem;
+  font-weight: 600;
+  margin: 1.8rem 0 1rem;
+  letter-spacing: 0.05em;
+  text-align: left;
+  color: #ffffff;
+}
+
+.contentArea>div:first-child h3 {
+  font-family: 'Antonio', sans-serif;
+  font-size: 4rem;
+  font-weight: 500;
+  margin: 1.5rem 0 0.8rem;
+  letter-spacing: 0.05em;
+  text-align: left;
+  color: #ffffff;
+}
+
+/* Content sections */
+.contentSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-family: 'Antonio', sans-serif;
+  font-size: 4rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+
+  letter-spacing: 0.05em;
+  text-align: left;
+  color: #ffffff;
+}
+
+.gridImage {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.sectionDescription {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 1rem 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eaeaea;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navLink {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navLink:hover {
+  color: #666;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .pageWrapper {
+    padding: 1.5rem;
   }
-  
+
   .mainHeading {
-    font-family: 'Bruno Ace', sans-serif;
-    font-size: 70px;
-    color: var(--color-white);
+    font-size: 2.2rem;
+  }
+
+  .mainImage {
+    height: 350px;
+  }
+
+  .gridImage {
+    height: 350px;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 1rem;
     text-align: center;
-    margin-bottom: 60px;
   }
-  
-  .grid {
-    display: grid;
-    /* === CHANGE 1: DEFINING A 3-COLUMN GRID === */
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-  }
-  
-  /* === CHANGE 2: MAKE SPECIFIC CARDS WIDER === */
-  /* This targets the 2nd, 5th, 8th, etc., cards and makes them span 2 columns */
-  .card:nth-child(3n-1) {
-    grid-column: span 2;
-  }
-  
-  .card {
-    text-decoration: none;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    display: block;
-  }
-  
-  .imageWrapper {
-    /* === CHANGE 3: ADJUSTED ASPECT RATIO FOR BETTER FIT === */
-    aspect-ratio: 1.25 / 1; 
-    overflow: hidden;
-  }
-  
-  .cardImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease, filter 0.4s ease;
-  }
-  
-  .card:hover .cardImage {
-    transform: scale(1.05);
-    filter: brightness(0.8);
-  }
-  
-  .cardOverlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 40px 20px 20px;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    text-align: left;
-  }
-  
-  .cardTitle {
-    font-family: 'Clash Display', sans-serif;
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--color-white);
-    margin: 0;
-    transform: translateY(20px);
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-  
-  .card:hover .cardTitle {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  
-  /* --- RESPONSIVE STYLES --- */
-  @media (max-width: 810px) {
-    .grid { 
-      grid-template-columns: 1fr; /* Stack everything into a single column on mobile */
-    }
-    
-    /* Reset the column span on mobile */
-    .card:nth-child(3n-1) {
-      grid-column: span 1;
-    }
-  
-    .mainHeading { font-size: 44px; }
-  }
+}

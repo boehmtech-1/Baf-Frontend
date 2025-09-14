@@ -1,181 +1,231 @@
 /* src/components/ContactPage/ContactPage.module.css */
 .contactSection {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 120px 40px;
-    background-color: var(--color-background);
-  }
-  
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 120px 40px;
+  background-color: var(--color-background);
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 44px;
+  width: 100%;
+  max-width: 1100px;
+  align-items: flex-start;
+}
+
+.leftPanel,
+.rightPanel {
+  flex: 1;
+  min-width: 0;
+  /* Prevents flex items from overflowing */
+}
+
+.leftPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.heading {
+  font-family: 'Satoshi', sans-serif;
+  /* Make sure to import 'Satoshi' in globals.css if needed */
+  font-size: 44px;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.heading span {
+  color: var(--color-text-secondary);
+}
+
+.ctaCard {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+  padding: 32px 24px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 16px 24px 20px 8px rgba(0, 0, 0, 0.4), inset 0px 2px 0px 0px rgba(184, 180, 180, 0.08);
+}
+
+.ctaCard h4 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-white);
+  margin: 0;
+}
+
+.ctaButtonWrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.rightPanel {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: inset 0px 2px 0px 0px rgba(184, 180, 180, 0.08);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.inputRow {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.formGroup label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  width: 100%;
+  transition: box-shadow 0.2s ease;
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: rgb(120, 120, 120);
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.formGroup select {
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23787878%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E');
+  background-repeat: no-repeat;
+  background-position: right 15px top 50%;
+  background-size: .65em auto;
+}
+
+.formGroup select option {
+  background-color: #333;
+  color: white;
+}
+
+.submitButton {
+  padding: 12px 20px;
+  background: linear-gradient(180deg, #fff 0%, #787878 100%);
+  color: #0a0a0a;
+  border: none;
+  border-radius: 100px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  box-shadow: 0px 6px 7px 0px rgba(0, 0, 0, 0.07);
+}
+
+.submitButton:hover {
+  opacity: 0.9;
+}
+
+.subtext {
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  opacity: 0.5;
+  margin: 0;
+}
+
+/* --- RESPONSIVE STYLES --- */
+@media (max-width: 900px) {
   .container {
-    display: flex;
-    flex-direction: row;
-    gap: 44px;
-    width: 100%;
-    max-width: 1100px;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   .leftPanel,
   .rightPanel {
-    flex: 1;
-    min-width: 0; /* Prevents flex items from overflowing */
-  }
-  
-  .leftPanel {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-  
-  .heading {
-    font-family: 'Satoshi', sans-serif; /* Make sure to import 'Satoshi' in globals.css if needed */
-    font-size: 44px;
-    letter-spacing: -2px;
-    line-height: 1.1;
-    color: var(--color-white);
-    margin: 0;
-  }
-  
-  .heading span {
-    color: var(--color-text-secondary);
-  }
-  
-  .ctaCard {
-    background-color: rgba(255, 255, 255, 0.07);
-    border-radius: 15px;
-    padding: 32px 24px;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    box-shadow: 16px 24px 20px 8px rgba(0, 0, 0, 0.4), inset 0px 2px 0px 0px rgba(184, 180, 180, 0.08);
+    max-width: 600px;
+    /* Limit width on stacked layout */
   }
-  
-  .ctaCard h4 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--color-white);
-    margin: 0;
-  }
-  
-  .ctaButtonWrapper {
-    display: flex;
-    justify-content: flex-start;
-  }
-  
-  .rightPanel {
-    background-color: rgba(255, 255, 255, 0.07);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: inset 0px 2px 0px 0px rgba(184, 180, 180, 0.08);
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-  }
-  
+
   .inputRow {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-  }
-  
-  .formGroup {
-    display: flex;
     flex-direction: column;
-    gap: 4px;
-    width: 100%;
   }
-  
-  .formGroup label {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--color-text-secondary);
+}
+
+.successMessage {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.errorMessage {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  .formGroup input,
-  .formGroup textarea,
-  .formGroup select {
-    background-color: rgba(255, 255, 255, 0.03);
-    border: none;
-    border-radius: 10px;
-    padding: 15px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 14px;
-    color: var(--color-text-secondary);
-    width: 100%;
-    transition: box-shadow 0.2s ease;
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .formGroup input::placeholder,
-  .formGroup textarea::placeholder {
-    color: rgb(120, 120, 120);
-  }
-  
-  .formGroup input:focus,
-  .formGroup textarea:focus,
-  .formGroup select:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
-  }
-  
-  .formGroup select {
-    appearance: none;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23787878%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22/%3E%3C/svg%3E');
-    background-repeat: no-repeat;
-    background-position: right 15px top 50%;
-    background-size: .65em auto;
-  }
-  
-  .formGroup select option {
-    background-color: #333;
-    color: white;
-  }
-  
-  .submitButton {
-    padding: 12px 20px;
-    background: linear-gradient(180deg, #fff 0%, #787878 100%);
-    color: #0a0a0a;
-    border: none;
-    border-radius: 100px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-    box-shadow: 0px 6px 7px 0px rgba(0, 0, 0, 0.07);
-  }
-  
-  .submitButton:hover {
-    opacity: 0.9;
-  }
-  
-  .subtext {
-    text-align: center;
-    font-size: 14px;
-    color: var(--color-text-secondary);
-    opacity: 0.5;
-    margin: 0;
-  }
-  
-  /* --- RESPONSIVE STYLES --- */
-  @media (max-width: 900px) {
-    .container {
-      flex-direction: column;
-      align-items: center;
-    }
-    .leftPanel,
-    .rightPanel {
-      width: 100%;
-      max-width: 600px; /* Limit width on stacked layout */
-    }
-    .inputRow {
-      flex-direction: column;
-    }
-  }
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form input:disabled,
+.form textarea:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}

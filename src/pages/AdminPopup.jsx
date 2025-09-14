@@ -7,10 +7,9 @@ const AdminPopup = ({ onClose }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  //const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const api = axios.create({
-    baseURL: 'https://baf-backend-18y5.onrender.com',
+  // This instance will now use the Vite proxy for requests starting with /api
+  const instance = axios.create({
     timeout: 10000,
     headers: {
       'Content-Type': 'application/json',
@@ -24,12 +23,13 @@ const AdminPopup = ({ onClose }) => {
     setError('');
 
     const loginData = {
-      username: username,
+      email: username, // Payload CMS expects 'email' by default for login
       password: password
     };
 
     try {
-      const response = await api.post('/login', loginData);
+      // Use the proxied API endpoint for logging in.
+      const response = await instance.post('/api/admins/login', loginData);
       console.log('Response:', response.data);
 
       // Check if token and user are present in response
@@ -37,7 +37,7 @@ const AdminPopup = ({ onClose }) => {
         localStorage.setItem('adminToken', response.data.token);
         localStorage.setItem('adminUser', JSON.stringify(response.data.user));
         //setIsLoggedIn(true);
-        
+
         setTimeout(() => {
           onClose();
           // Redirect to admin home page
@@ -48,7 +48,7 @@ const AdminPopup = ({ onClose }) => {
       }
     } catch (err) {
       console.error('Login error:', err);
-      
+
       if (err.response) {
         setError(err.response.data.message || `Server error: ${err.response.status}`);
       } else if (err.request) {
@@ -85,7 +85,7 @@ const AdminPopup = ({ onClose }) => {
   // }
 
   return (
-    <div 
+    <div
       className="fixed inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center z-50 p-4"
       onClick={handleOverlayClick}
     >
@@ -134,8 +134,8 @@ const AdminPopup = ({ onClose }) => {
 
           <div className="flex justify-center">
             <div className="w-3/4">
-              <GlossyButton 
-                type="submit" 
+              <GlossyButton
+                type="submit"
                 disabled={isLoading}
                 className={`w-full ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
               >

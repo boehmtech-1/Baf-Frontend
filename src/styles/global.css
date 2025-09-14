@@ -19,11 +19,16 @@
   --color-white: rgb(255, 255, 255);
 
   /* Fonts - This creates our new font system */
-  --font-display: 'Bruno Ace', sans-serif;       /* For major headings like "Brands", "Exquisite Living" */
-  --font-heading: 'Clash Display', sans-serif;  /* For secondary headings and card titles */
-  --font-subheading: 'Antonio', sans-serif;    /* For content headings like "Key Spaces" */
-  --font-body: 'Inter', sans-serif;             /* For all paragraph text */
-  --font-ui: 'Poppins', sans-serif;             /* For buttons and UI elements */
+  --font-display: 'Bruno Ace', sans-serif;
+  /* For major headings like "Brands", "Exquisite Living" */
+  --font-heading: 'Clash Display', sans-serif;
+  /* For secondary headings and card titles */
+  --font-subheading: 'Antonio', sans-serif;
+  /* For content headings like "Key Spaces" */
+  --font-body: 'Inter', sans-serif;
+  /* For all paragraph text */
+  --font-ui: 'Poppins', sans-serif;
+  /* For buttons and UI elements */
   --font-special: 'Instrument Serif', serif;
 }
 
@@ -37,4 +42,3 @@ body {
 * {
   box-sizing: border-box;
 }
-

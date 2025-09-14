@@ -1,9 +1,10 @@
-/* src/components/BrandsSection/BrandsSection.module.css */
+/* src/styles/BrandsSection.module.css */
 .brandsSection {
-  padding: 100px 0;
+  padding: 40px 0 100px;
   background-color: var(--color-background);
-  overflow: hidden;
+  overflow: visible;
   position: relative;
+  width: 100%;
 }
 
 .mainHeading {
@@ -11,16 +12,19 @@
   font-size: 70px;
   color: var(--color-white);
   text-align: center;
-  margin-bottom: 100px;
+  margin-bottom: 120px;
   position: relative;
-  z-index: 10;
+  z-index: 20;
+  padding-top: 40px;
 }
 
 .scrollContainer {
-  height: 300vh; /* Increased height for better scroll effect */
+  height: 250vh;
+  /* Increased scroll area for smoother motion */
   width: 100%;
   position: relative;
-  margin-top: -230px;
+  margin-top: 0;
+  overflow: visible;
 }
 
 .stickyWrapper {
@@ -28,11 +32,12 @@
   top: 0;
   height: 100vh;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  perspective: 1200px;
+  perspective: 1400px;
   transform-style: preserve-3d;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .spiralPositioner {
@@ -42,57 +47,91 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 10;
 }
 
 .spiralRotator {
-  position: relative;
   width: 1px;
   height: 1px;
   transform-style: preserve-3d;
   will-change: transform;
+  position: relative;
+  /* Force GPU acceleration for smoother animation */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .brandCard {
   position: absolute;
-  width: 320px;
-  height: 210px;
-  top: 0;
-  left: 0;
-  border-radius: 10px;
+  width: 420px;
+  height: 280px;
+  border-radius: 16px;
   background-size: cover;
   background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  filter: brightness(0.8);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  filter: brightness(0.85);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
   backface-visibility: hidden;
   transform-origin: center;
   transition: filter 0.3s ease;
+  margin-top: -140px;
+  margin-left: -210px;
+  /* Force GPU acceleration */
+  transform: translateZ(0);
 }
 
 .brandCard:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.1) !important;
+}
+
+/* Enhanced height difference visual effect */
+.brandCard:nth-child(1) {
+  filter: brightness(0.95);
+  z-index: 5;
+}
+
+.brandCard:nth-child(2) {
+  filter: brightness(0.88);
+  z-index: 4;
+}
+
+.brandCard:nth-child(3) {
+  filter: brightness(0.82);
+  z-index: 3;
+}
+
+.brandCard:nth-child(4) {
+  filter: brightness(0.88);
+  z-index: 4;
+}
+
+.brandCard:nth-child(5) {
+  filter: brightness(0.95);
+  z-index: 5;
 }
 
 .cardLogo {
-  width: 75px;
+  width: 100px;
   height: auto;
   transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
 }
 
 .brandCard:hover .cardLogo {
-  transform: scale(1.1);
+  transform: scale(1.15);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.7));
 }
 
 /* Ticker styles */
 .tickerContainer {
-  padding: 40px 0;
+  padding: 50px 0;
   width: 100%;
   overflow: hidden;
   position: relative;
   z-index: 5;
+  margin-top: 80px;
 }
 
 .tickerTrack {
@@ -103,64 +142,147 @@
 }
 
 .tickerLogo {
-  height: 25px;
+  height: 35px;
   width: auto;
-  margin: 0 50px;
-  opacity: 0.65;
-  filter: brightness(0.8);
-  transition: opacity 0.3s ease;
+  margin: 0 60px;
+  opacity: 0.7;
+  filter: brightness(0.9);
+  transition: all 0.3s ease;
 }
 
 .tickerLogo:hover {
   opacity: 1;
+  transform: scale(1.1);
 }
 
 @keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Smooth scroll behavior for the entire page */
+html {
+  scroll-behavior: smooth;
 }
 
 /* Media queries */
+@media (max-width: 1024px) {
+  .brandCard {
+    width: 360px;
+    height: 240px;
+    margin-top: -120px;
+    margin-left: -180px;
+  }
+
+  .cardLogo {
+    width: 85px;
+  }
+
+  .stickyWrapper {
+    perspective: 1200px;
+  }
+
+  .mainHeading {
+    margin-bottom: 80px;
+    padding-top: 20px;
+  }
+
+  .scrollContainer {
+    height: 220vh;
+  }
+}
+
 @media (max-width: 810px) {
   .mainHeading {
     font-size: 44px;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
+    padding-top: 15px;
   }
-  
+
   .scrollContainer {
-    margin-top: -150px;
     height: 200vh;
   }
-  
+
+  .stickyWrapper {
+    perspective: 1000px;
+  }
+
   .brandCard {
-    width: 70vw;
-    max-width: 280px;
-    height: 185px;
+    width: 320px;
+    height: 210px;
+    margin-top: -105px;
+    margin-left: -160px;
   }
-  
+
   .cardLogo {
-    width: 60px;
+    width: 75px;
   }
-  
+
   .tickerLogo {
-    height: 20px;
-    margin: 0 30px;
+    height: 28px;
+    margin: 0 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .brandsSection {
+    padding: 30px 0 80px;
+  }
+
+  .brandCard {
+    width: 280px;
+    height: 180px;
+    margin-top: -90px;
+    margin-left: -140px;
+  }
+
+  .cardLogo {
+    width: 65px;
+  }
+
+  .mainHeading {
+    font-size: 36px;
+    margin-bottom: 50px;
+    padding-top: 10px;
+  }
+
+  .tickerLogo {
+    height: 24px;
+    margin: 0 25px;
+  }
+
+  .scrollContainer {
+    height: 180vh;
   }
 }
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .spiralRotator {
-    animation: none;
+    transform: none !important;
+    transition: none !important;
   }
-  
+
   .tickerTrack {
     animation: none;
     justify-content: center;
     width: 100%;
   }
-  
+
   .tickerLogo {
     margin: 0 20px;
+  }
+
+  .brandCard:hover .cardLogo {
+    transform: none;
+  }
+
+  html {
+    scroll-behavior: auto;
   }
 }

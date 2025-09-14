@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import UnicornStudioEmbed from "../components/animations/UnicornStudioEmbed";
 import Carousel from "../components/layout/Carousel";
 import AboutSection from "../components/common/AboutSection";
@@ -11,16 +11,31 @@ import Stats from "../components/layout/Stats";
 import { Footer } from '../components/footer/footer';
 import { HeroSection } from "../components/layout/HeroSection";
 import { BrandsSection } from "../components/layout/BrandsSection";
-import AdminPopup from './AdminPopup.jsx';
 
 
-export default function Home({ showAdminPopup = false }) {
+export default function Home() {
   const { data, loading, error } = useBafData();
-  
-  if (data?.home?.testimonials) {
-    console.log("Testimonials Array:", data.home.testimonials);
-  }
-  
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const apiUrl = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
+        const response = await fetch(`${apiUrl}/api/testimonials`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const testimonialsData = await response.json();
+        if (testimonialsData && testimonialsData.docs) {
+          setTestimonials(testimonialsData.docs);
+        }
+      } catch (e) {
+        console.error("Failed to fetch testimonials:", e);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
   // Loading state
   if (loading) {
     return (
@@ -47,7 +62,7 @@ export default function Home({ showAdminPopup = false }) {
         )}
 
         {/* About Section */}
-        {data?.home?.about_section && (
+        {data?.home?.about && (
           <AboutSection aboutData={data.home.about} />
         )}
 
@@ -60,15 +75,12 @@ export default function Home({ showAdminPopup = false }) {
         <Clientrev />
 
         {/* Testimonials Section */}
-        {data?.home?.testimonials && data.home.testimonials.length > 0 && (
-          <Testimonials testimonials={data.home.testimonials} />
+        {testimonials.length > 0 && (
+          <Testimonials testimonials={testimonials} />
         )}
 
         <Stats data={data} />
       </main>
-
-      {/* Admin Popup - shows when showAdminPopup is true */}
-      {showAdminPopup && <AdminPopup onClose={() => {}} />}
     </div>
   )
 }

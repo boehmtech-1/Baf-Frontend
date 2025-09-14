@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 import { AnimatedCursor } from "./components/animations/AnimatedCursor";
 import { Navbar } from "./components/common/Navbar";
 import { Footer } from "./components/footer/footer";
- 
+
 
 const styles = {
   navbar: {
@@ -239,21 +239,23 @@ export default function App() {
   return (
     <div className="bg-black text-white min-h-screen" style={{ cursor: 'none' }}>
       <AnimatedCursor style={{
-        width: 15,
-        height: 15,
+        width: 13,
+        height: 13,
         borderRadius: "50%",
         position: "fixed",
         left: cursorPos.x - 16,
         top: cursorPos.y - 16,
         zIndex: 9999,
         pointerEvents: "none",
-        backgroundColor: "#ffffffff", // Add this line
+
+        backgroundColor: "#ffffffff",
+        boxShadow: "0 0 12px rgba(255, 255, 255, 0.7)",
       }} />
       <Navbar />
       <main style={{ paddingTop: '80px' }}>
         <Outlet />
       </main>
-      <Footer/>
+      <Footer />
       <LoginOverlay open={loginOpen} onClose={() => setLoginOpen(false)} />
     </div>
   )

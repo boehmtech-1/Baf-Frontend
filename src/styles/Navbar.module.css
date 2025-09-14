@@ -3,139 +3,148 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 40px;
+  padding: 2px 40px;
   z-index: 1000;
   transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out, transform 0.3s ease-in-out;
   transform: translateY(0);
 }
-  
-  .header.scrolled {
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
-  }
-  
-  .navbar {
-    max-width: 1680px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 
-  .headerHidden {
-    transform: translateY(-100%);
-  }
-  
-  .logo img {
-    height: 63px;
-    width: auto;
-  }
-  
+.header.scrolled {
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+}
+
+.navbar {
+  max-width: 1680px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerHidden {
+  transform: translateY(-100%);
+}
+
+.logo img {
+  height: 110px;
+  width: auto;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navLink {
+  color: var(--color-white);
+  text-decoration: none;
+  font-family: 'Bruno Ace', sans-serif;
+  font-size: 12px;
+  padding: 6px 12px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.navLink:hover {
+  transform: scale(1.3);
+}
+
+.catalogButton {
+  background: linear-gradient(180deg, rgb(13, 13, 13) -74%, rgba(255, 255, 255, 0.1) 183%);
+  border: 1px solid var(--color-border);
+  border-radius: 120px;
+  padding: 4px 20px;
+  color: rgb(240, 240, 240);
+  text-decoration: none;
+  font-size: 12px;
+  font-family: 'Bruno Ace', sans-serif;
+  margin-left: 12px;
+  transition: all 0.3s ease;
+}
+
+.catalogButton:hover {
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.menuButton {
+  display: none;
+  /* Hidden on desktop */
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger {
+  width: 24px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--color-white);
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobileMenu {
+  display: none;
+}
+
+/* --- RESPONSIVE STYLES --- */
+@media (max-width: 810px) {
   .navLinks {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .navLink {
-    color: var(--color-white);
-    text-decoration: none;
-    font-family: 'Bruno Ace', sans-serif;
-    font-size: 12px;
-    padding: 6px 12px;
-    position: relative;
-    transition: transform 0.3s ease;
-  }
-  
-  .navLink:hover {
-      transform: scale(1.3);
-  }
-  
-  .catalogButton {
-    background: linear-gradient(180deg, rgb(13, 13, 13) -74%, rgba(255, 255, 255, 0.1) 183%);
-    border: 1px solid var(--color-border);
-    border-radius: 120px;
-    padding: 4px 20px;
-    color: rgb(240, 240, 240);
-    text-decoration: none;
-    font-size: 12px;
-    font-family: 'Bruno Ace', sans-serif;
-    margin-left: 12px;
-    transition: all 0.3s ease;
-  }
-  
-  .catalogButton:hover {
-    color: var(--color-white);
-    border-color: rgba(255, 255, 255, 0.5);
-  }
-  
-  .menuButton {
-    display: none; /* Hidden on desktop */
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 1001;
-  }
-  
-  .hamburger {
-    width: 24px;
-    height: 18px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .hamburger span {
-    display: block;
-    height: 2px;
-    width: 100%;
-    background: var(--color-white);
-    border-radius: 2px;
-    transition: all 0.3s ease-in-out;
-  }
-  .hamburger.open span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  .hamburger.open span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger.open span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-  
-  .mobileMenu {
     display: none;
   }
-  
-  /* --- RESPONSIVE STYLES --- */
-  @media (max-width: 810px) {
-    .navLinks {
-      display: none;
-    }
-    .menuButton {
-      display: flex;
-    }
-    .mobileMenu {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background-color: var(--color-background);
-      transform: translateX(100%);
-      transition: transform 0.4s ease-in-out;
-    }
-    .mobileMenu.open {
-      transform: translateX(0);
-    }
-    /* src/components/Navbar/Navbar.module.css */
-  
-   .catalogButtonMobile {
-     /* We only need the extra style here */
-     margin-top: 20px;
-   }
+
+  .menuButton {
+    display: flex;
   }
+
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-background);
+    transform: translateX(100%);
+    transition: transform 0.4s ease-in-out;
+  }
+
+  .mobileMenu.open {
+    transform: translateX(0);
+  }
+
+  /* src/components/Navbar/Navbar.module.css */
+
+  .catalogButtonMobile {
+    /* We only need the extra style here */
+    margin-top: 20px;
+  }
+}

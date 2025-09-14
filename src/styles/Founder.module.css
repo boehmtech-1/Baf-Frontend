@@ -1,103 +1,137 @@
 .founderSection {
-    width: 100%;
-    background: #000;
-    color: #fff;
-    padding: 4rem 1.5rem;
-  }
-  
+  width: 100%;
+  max-width: 100vw;
+  /* Prevent overflow */
+  background: #000;
+  color: #fff;
+  padding: 0rem 0;
+  /* Remove horizontal padding here */
+  overflow-x: hidden;
+  /* Prevent horizontal scroll */
+}
+
+.container {
+  max-width: 1600px;
+  width: 100%;
+  /* Ensure full width */
+  margin: 0 auto;
+  /* Center the container */
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 0 2rem;
+  /* Add padding here instead */
+  box-sizing: border-box;
+  /* Include padding in width calculation */
+}
+
+@media (min-width: 1024px) {
   .container {
-    max-width: 1280px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
     gap: 3rem;
   }
-  
-  @media (min-width: 1024px) {
-    .container {
-      grid-template-columns: 1fr 1fr;
-      align-items: flex-start;
-    }
-  }
-  
-  .leftContent {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-  
+}
+
+.leftContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.heading {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
   .heading {
-    font-size: 3rem;
-    font-weight: 300;
-    line-height: 1.2;
+    font-size: 3.75rem;
   }
-  
-  @media (min-width: 768px) {
-    .heading {
-      font-size: 3.75rem;
-    }
-  }
-  
-  .description {
-    margin-top: 1.5rem;
-    color: #d1d1d1;
-    max-width: 600px;
-    font-size: 1.125rem;
-  }
-  
-  .skillsSection {
-    border-top: 1px solid #222;
-    padding-top: 1.5rem;
-  }
-  
-  .skillsWrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-  
-  .skillTag {
-    padding: 0.5rem 1rem;
-    background: #111;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-    color: #ccc;
-  }
-  
-  .experienceSection {
-    border-top: 1px solid #222;
-    padding-top: 1.5rem;
-  }
-  
-  .experienceGrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 1.5rem 1rem;
-    font-size: 1rem;
-    color: #ccc;
-  }
-  
-  .role {
-    color: #fff;
-  }
-  
-  .company {
-    color: #aaa;
-  }
-  
-  .time {
-    color: #777;
-  }
-  
-  .rightImage {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .image {
-    border-radius: 0.5rem;
-    object-fit: cover;
-    width: 100%;
-    max-width: 400px;
-  }
-  
+}
+
+.description {
+  margin-top: 1rem;
+  color: #d1d1d1;
+  max-width: 700px;
+  font-size: 1.125rem;
+}
+
+.skillsSection {
+  border-top: 1px solid #222;
+  padding-top: 1.5rem;
+}
+
+.skillsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skillTag {
+  padding: 0.5rem 1rem;
+  background: #111;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #ccc;
+}
+
+.experienceSection {
+  border-top: 1px solid #222;
+  padding-top: 1.5rem;
+}
+
+.experienceGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem 1rem;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.role {
+  color: #fff;
+}
+
+.company {
+  color: #aaa;
+}
+
+.time {
+  color: #777;
+}
+
+.rightImage {
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  border-radius: 0.5rem;
+  object-fit: cover;
+  width: 100%;
+  max-width: 500px;
+  height: 600px;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+}
+
+.image:hover {
+  filter: grayscale(0%);
+  -webkit-filter: grayscale(0%);
+  transition: filter 0.3s ease;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  max-width: 500px;
+  height: 600px;
+  background: #111;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
