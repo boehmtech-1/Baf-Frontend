@@ -89,76 +89,69 @@
   position: absolute;
   top: 100%;
   right: 0;
-  width: 180px;
-  /* Reduced from 200px */
+  width: 160px;
+  /* Reduced from 180px */
   background-color: #0a0a0a;
   border: 1px solid #2D3748;
   border-radius: 8px;
-  padding: 0.5rem;
-  /* Reduced from 0.75rem */
+  padding: 0.2rem 0.3rem;
+  /* Reduced padding */
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  /* Reduced from 0.75rem */
+  gap: 0.2rem;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
   z-index: 1001;
   margin-top: 0.5rem;
+  height: auto;
+  /* Changed from fixed height */
+  max-height: 100px;
+  /* Reduced from 120px */
+  overflow: hidden;
+  /* Changed from auto to prevent scroll */
 }
 
 .overlayHeader {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  /* Reduced from 0.5rem */
-  padding-bottom: 0.5rem;
-  /* Reduced from 0.75rem */
+  gap: 0.15rem;
+  /* Reduced gap */
+  padding-bottom: 0.25rem;
+  /* Reduced padding */
   border-bottom: 1px solid #2D3748;
   text-align: center;
 }
 
 .overlayTitle {
-  font-family: 'Bruno Ace', sans-serif;
-  font-size: 1rem;
-  /* Reduced from 1.4rem */
-  color: #fff;
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  /* Reduced from 1rem */
+  letter-spacing: 0.05em;
 }
 
 .viewAllLink {
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.7rem;
-  /* Reduced from 0.8rem */
-  color: #A0AEC0;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.viewAllLink:hover {
-  color: #ffffff;
+  font-size: 0.6rem;
+  /* Reduced from 0.7rem */
+  padding: 0.1rem 0;
 }
 
 .overlayGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.25rem;
-  padding: 0.15rem;
+  gap: 0.15rem;
+  /* Reduced gap */
+  padding: 0.1rem;
+  /* Reduced padding */
 }
 
 .card {
   display: block;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 3px;
+  /* Reduced from 4px */
   overflow: hidden;
   position: relative;
   transition: transform 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover {
@@ -167,10 +160,9 @@
 
 .cardImage {
   width: 100%;
-  height: 50px;
-  /* Reduced from 80px */
+  height: 35px;
+  /* Reduced from 50px */
   object-fit: cover;
-  display: block;
 }
 
 .cardOverlay {
@@ -185,12 +177,13 @@
 
 .cardTitle {
   font-family: 'Bruno Ace', sans-serif;
-  font-size: 0.6rem;
-  /* Reduced from 0.65rem */
+  font-size: 0.55rem;
+  /* Reduced from 0.6rem */
+  letter-spacing: 0.03em;
+  padding: 0.1rem;
   font-weight: 400;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
   line-height: 1.2;
   color: white;
 }

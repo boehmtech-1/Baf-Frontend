@@ -73,7 +73,7 @@ const CatalogOverlay = ({ isVisible, closeOverlay, catalogData }) => {
 
           <div className={styles.overlayGrid}>
             {catalogData && catalogData.length > 0 ? (
-              catalogData.slice(0, 4).map(item => (
+              catalogData.slice(0, 2).map(item => (
                 <CatalogCard
                   key={item.Slug || item.id}
                   item={item}

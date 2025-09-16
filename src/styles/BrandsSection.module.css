@@ -17,25 +17,30 @@
   position: relative;
 }
 
-.scrollContainer {
-  height: 130vh;
-  /* stretched scroll area for smoother spiral animation */
-  width: 100%;
+.scrollAnimationSection {
+  height: 500vh;
+  /* Increased from 400vh for more stretched animation */
   position: relative;
-  overflow: visible;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow-x: hidden;
 }
 
 .stickyWrapper {
   position: sticky;
   top: 0;
-  height: 100vh;
-  perspective: 2200px;
-  /* deeper perspective */
+  height: 120vh;
+  /* Increased from 100vh for more vertical space */
+  perspective: 2500px;
+  /* Increased perspective for better depth */
   transform-style: preserve-3d;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  margin-top: -10vh;
+  /* Pull up slightly to center better */
 }
 
 .spiralPositioner {
@@ -61,37 +66,36 @@
 /* --- CARD STYLING --- */
 .brandCard {
   position: absolute;
-  width: 360px;
-  /* Increased from 320px */
-  height: 225px;
-  /* Increased from 200px */
-  border-radius: 18px;
+  width: 420px;
+  /* Increased from 360px */
+  height: 280px;
+  /* Increased from 225px */
+  border-radius: 20px;
   background-size: cover;
   background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
   filter: brightness(0.92);
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
   backface-visibility: hidden;
   transform-origin: center;
 
-  margin-top: -112.5px;
-  /* half height */
-  margin-left: -180px;
-  /* half width */
+  margin-top: -140px;
+  /* Half of new height */
+  margin-left: -210px;
+  /* Half of new width */
 
-  transition:
-    filter 0.5s ease,
-    transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1),
-    /* Smoother easing */
-    opacity 0.6s ease;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.3s ease,
+    opacity 0.3s ease;
   will-change: transform, filter, opacity;
 }
 
 .brandCard:hover {
-  filter: brightness(1.08) !important;
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.65);
+  filter: brightness(1.1) !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.7);
+  transform: scale(1.02);
 }
 
 .cardLogo {
