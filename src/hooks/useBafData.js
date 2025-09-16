@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// Create axios instance without baseURL since we're using Vite's proxy
 const instance = axios.create({
-  // The baseURL is removed because we are using a proxy in development.
-  // The request path '/api/team' will be automatically proxied by Vite.
   timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
@@ -28,15 +27,17 @@ export function useBafData() {
         const results = await Promise.allSettled([
           instance.get('/api/AboutSection?depth=1'),
           instance.get('/api/events?limit=10&depth=1'),
-          instance.get('/api/brands?depth=1'),
+          instance.get('/api/BrandsSection?depth=1'),
+          instance.get('/api/catalog?depth=1'),
         ]);
 
-        const [aboutResult, eventsResult, brandsResult] = results;
+        const [aboutResult, eventsResult, brandsResult, catalogResult] = results;
 
         // --- DEBUGGING LOGS ---
         console.log('API Response for /api/AboutSection:', aboutResult);
         console.log('API Response for /api/events:', eventsResult);
         console.log('API Response for /api/brands:', brandsResult);
+        console.log('API Response for /api/catalog:', catalogResult);
         // --- END DEBUGGING LOGS ---
 
         const combinedData = {
@@ -47,14 +48,15 @@ export function useBafData() {
           },
           events: eventsResult.status === 'fulfilled' ? eventsResult.value.data.docs : [],
           brands: brandsResult.status === 'fulfilled' ? brandsResult.value.data.docs : [],
+          catalog: catalogResult.status === 'fulfilled' ? catalogResult.value.data.docs : [],
         };
 
         if (combinedData) {
           console.log('✅ Data fetched successfully:', combinedData);
+          const endpoints = ['/api/AboutSection', '/api/events', '/api/BrandsSection', '/api/catalog'];
           results.forEach((result, index) => {
             if (result.status === 'rejected') {
-              const urls = ['/api/AboutSection', '/api/events', '/api/brands'];
-              console.error(`❌ A data fetch request failed for ${urls[index]}:`, result.reason.message);
+              console.error(`❌ A data fetch request failed for ${endpoints[index]}:`, result.reason);
             }
           });
           setData(combinedData);

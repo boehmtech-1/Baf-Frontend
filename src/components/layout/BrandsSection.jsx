@@ -38,12 +38,12 @@ export const BrandsSection = () => {
     offset: ['start end', 'end start'],
   });
 
-  // Smooth rotation with custom easing - stop at last card (288 degrees)
+  // Smoother rotation with better easing curve
   const rotateY = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.8, 1], // Different scroll points for smoother acceleration/deceleration
-    [0, -100, -250, -288], // Gradual rotation values
-    { clamp: false } // Allow smooth transitions beyond boundaries
+    [0, 0.15, 0.85, 1], // Adjusted for smoother acceleration/deceleration
+    [0, -72, -216, -288], // More gradual rotation curve
+    { clamp: false }
   );
 
   useEffect(() => {
@@ -91,10 +91,10 @@ export const BrandsSection = () => {
     const totalCards = brandCards.length;
     return brandCards.map((card, index) => {
       const angle = (index * 360) / totalCards;
-      const yOffset = (index - (totalCards - 1) / 2) * 150;
+      const yOffset = (index - (totalCards - 1) / 2) * 100; // Reduced from 150px
       return {
         id: card.id,
-        transform: `rotateY(${angle}deg) translateZ(380px) translateY(${yOffset}px)`,
+        transform: `rotateY(${angle}deg) translateZ(300px) translateY(${yOffset}px)`, // Reduced from 380px
         bgImage: card.bgImage,
         logo: card.logo
       };
@@ -111,7 +111,12 @@ export const BrandsSection = () => {
             <motion.div
               className={styles.spiralRotator}
               style={{ rotateY }}
-              transition={{ type: "spring", damping: 30, stiffness: 100 }} // Added smooth transition
+              transition={{
+                type: "spring",
+                damping: 40, // Increased from 30
+                stiffness: 60, // Decreased from 100
+                mass: 1.2 // Added mass for more natural movement
+              }}
             >
               {cardPositions.map((card) => (
                 <div

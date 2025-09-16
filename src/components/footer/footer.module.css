@@ -2,26 +2,26 @@
 
 .footer {
   background-color: var(--color-background);
-  padding: 0 20px;
+  padding: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
   position: relative;
-  /* Make sure the footer is positioned so ::after can be absolute relative to it */
+  min-height: 150vh;
 }
 
-/* --- NEW RULE FOR BACKGROUND WATERMARK TEXT --- */
+/* --- UPDATED: Increased watermark size --- */
 .footer::after {
   content: 'BAB AL FOUZ';
   position: absolute;
-  top: 85%;
-  /* adjusted from 98% to bring watermark back into view */
+  top: 90%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-primary);
-  font-size: clamp(8vw, 14vw, 16vw);
+  font-size: clamp(80px, 13vw, 220px);
+  /* Increased from 60px, 10vw, 180px */
   font-weight: 700;
   background: linear-gradient(to bottom, #dfdfdf0f 0%, #00000000 100%);
   -webkit-background-clip: text;
@@ -32,19 +32,21 @@
   white-space: nowrap;
   line-height: 1;
   z-index: 0;
+  max-width: 85vw;
+  overflow: hidden;
 }
 
 .container {
   width: 100%;
   max-width: 1040px;
-  padding: 80px 0;
-  /* increased from 60px 0 for more container height */
+  padding: 160px 20px 140px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 700px;
-  /* increased from 542px for larger container */
+  min-height: 1100px;
+  position: relative;
+  z-index: 1;
 }
 
 .content {
@@ -53,17 +55,21 @@
   align-items: center;
   gap: 32px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
+/* --- Antonio font for heading --- */
 .heading {
-  font-family: var(--font-primary);
+  font-family: 'Antonio', sans-serif;
   font-weight: 700;
   color: var(--color-text-secondary);
   margin: 0;
   max-width: 840px;
   line-height: 1.2;
-  font-size: 44px;
-  /* Phone size */
+  font-size: clamp(32px, 5vw, 44px);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
 }
 
 .ctaGroup {
@@ -77,7 +83,6 @@
   display: flex;
   align-items: center;
   gap: 0;
-  /* separators handle spacing */
 }
 
 .socialItem {
@@ -105,28 +110,28 @@
   height: 24px;
 }
 
-
 .socialSeparator {
   width: 2px;
   height: 24px;
   margin: 0 20px;
   background: rgba(255, 255, 255, 0.282);
-  /* plain white color with 50% opacity */
   opacity: 0.7;
 }
 
+/* --- Full-width bottom bar --- */
 .bottomBar {
   width: 100%;
-  max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 20px 0;
-  padding-top: 24px;
-  /* keeps separation after removing border */
+  justify-content: center;
+  padding: 20px;
   gap: 16px;
-  font-size: 8px;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
 }
 
 .copyright {
@@ -137,6 +142,8 @@
 .legalNav {
   display: flex;
   gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .legalLink {
@@ -149,11 +156,58 @@
   text-decoration: underline;
 }
 
+/* --- Responsive Styles (Mobile) --- */
+@media (max-width: 480px) {
+  .footer {
+    min-height: 120vh;
+  }
+
+  .footer::after {
+    font-size: clamp(50px, 11vw, 100px);
+    /* Increased from 40px, 9vw, 80px */
+    top: 92%;
+  }
+
+  .container {
+    padding: 120px 20px 100px 20px;
+    min-height: 800px;
+  }
+
+  .heading {
+    font-size: clamp(28px, 8vw, 36px);
+  }
+
+  .ctaGroup {
+    width: 100%;
+  }
+
+  .socialSeparator {
+    margin: 0 12px;
+  }
+
+  .bottomBar {
+    font-size: 12px;
+    position: relative;
+  }
+
+  .legalNav {
+    gap: 12px;
+  }
+}
+
 /* --- Responsive Styles (Tablet and up) --- */
 @media (min-width: 768px) {
+  .footer {
+    min-height: 140vh;
+  }
+
+  .footer::after {
+    font-size: clamp(100px, 14vw, 170px);
+    /* Increased from 80px, 11vw, 140px */
+  }
+
   .heading {
-    font-size: 64px;
-    /* Tablet size */
+    font-size: clamp(48px, 7vw, 64px);
   }
 
   .ctaGroup {
@@ -163,20 +217,48 @@
 
   .bottomBar {
     flex-direction: row;
-    padding: 20px;
+    justify-content: space-between;
+    padding: 20px 40px;
+  }
+
+  .legalNav {
+    gap: 24px;
   }
 }
 
 /* --- Responsive Styles (Desktop and up) --- */
 @media (min-width: 1200px) {
+  .footer::after {
+    font-size: clamp(120px, 13vw, 220px);
+    /* Increased from 100px, 10vw, 180px */
+  }
+
   .heading {
-    font-size: 70px;
-    /* Desktop size */
+    font-size: clamp(64px, 5vw, 70px);
+  }
+
+  .container {
+    padding: 180px 20px 160px 20px;
+    min-height: 1200px;
+  }
+
+  .bottomBar {
+    padding: 24px 60px;
   }
 }
 
-@media (max-width: 767px) {
-  .bottomBar {
-    border-top: none;
+/* --- Extra large screens --- */
+@media (min-width: 1600px) {
+  .footer::after {
+    font-size: clamp(140px, 12vw, 240px);
+    /* Increased from 120px, 9vw, 200px */
+  }
+
+  .heading {
+    font-size: 80px;
+  }
+
+  .container {
+    min-height: 1300px;
   }
 }

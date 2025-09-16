@@ -248,7 +248,7 @@
     background: var(--color-primary);
     padding: 4px 12px;
     border-radius: 12px;
-    color: var(--color-background);
+    color: white;
     font-size: 12px;
     text-transform: capitalize;
     font-family: 'Bruno Ace', sans-serif;

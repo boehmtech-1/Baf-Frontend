@@ -1,17 +1,19 @@
+/* Navbar.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&family=Poppins:wght@300;400;500;600&display=swap');
+
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 2px 40px;
+  padding: 20px 40px;
   z-index: 1000;
-  transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out, transform 0.3s ease-in-out;
-  transform: translateY(0);
+  transition: background-color 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
 }
 
 .header.scrolled {
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
 }
 
 .navbar {
@@ -22,12 +24,8 @@
   align-items: center;
 }
 
-.headerHidden {
-  transform: translateY(-100%);
-}
-
 .logo img {
-  height: 110px;
+  height: 63px;
   width: auto;
 }
 
@@ -42,20 +40,31 @@
   text-decoration: none;
   font-family: 'Bruno Ace', sans-serif;
   font-size: 12px;
-  padding: 6px 12px;
+  padding: 8px 16px;
   position: relative;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .navLink:hover {
-  transform: scale(1.3);
+  color: #ffffff;
+}
+
+.activeLink {
+  color: #ffffff;
+}
+
+.catalogWrapper {
+  position: relative;
 }
 
 .catalogButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   background: linear-gradient(180deg, rgb(13, 13, 13) -74%, rgba(255, 255, 255, 0.1) 183%);
   border: 1px solid var(--color-border);
   border-radius: 120px;
-  padding: 4px 20px;
+  padding: 8px 20px;
   color: rgb(240, 240, 240);
   text-decoration: none;
   font-size: 12px;
@@ -66,52 +75,167 @@
 
 .catalogButton:hover {
   color: var(--color-white);
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: #ffffff;
+  background: linear-gradient(180deg, rgba(99, 179, 237, 0.1) -74%, rgba(99, 179, 237, 0.2) 183%);
 }
 
-.menuButton {
-  display: none;
-  /* Hidden on desktop */
+.bookmarkIcon {
+  width: 14px;
+  height: 14px;
+}
+
+/* === CATALOG OVERLAY STYLES (Smaller with Centered Heading) === */
+.overlay {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 180px;
+  /* Reduced from 200px */
+  background-color: #0a0a0a;
+  border: 1px solid #2D3748;
+  border-radius: 8px;
+  padding: 0.5rem;
+  /* Reduced from 0.75rem */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  /* Reduced from 0.75rem */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+  margin-top: 0.5rem;
+}
+
+.overlayHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  /* Reduced from 0.5rem */
+  padding-bottom: 0.5rem;
+  /* Reduced from 0.75rem */
+  border-bottom: 1px solid #2D3748;
+  text-align: center;
+}
+
+.overlayTitle {
+  font-family: 'Bruno Ace', sans-serif;
+  font-size: 1rem;
+  /* Reduced from 1.4rem */
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.viewAllLink {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  /* Reduced from 0.8rem */
+  color: #A0AEC0;
+  text-decoration: none;
+  transition: color 0.3s ease;
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 1001;
+  padding: 0;
 }
 
-.hamburger {
-  width: 24px;
-  height: 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.viewAllLink:hover {
+  color: #ffffff;
 }
 
-.hamburger span {
+.overlayGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.25rem;
+  padding: 0.15rem;
+}
+
+.card {
   display: block;
-  height: 2px;
+  text-decoration: none;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.cardImage {
   width: 100%;
-  background: var(--color-white);
-  border-radius: 2px;
-  transition: all 0.3s ease-in-out;
+  height: 50px;
+  /* Reduced from 80px */
+  object-fit: cover;
+  display: block;
 }
 
-.hamburger.open span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
+.cardOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  padding: 0.15rem;
+  /* Reduced from 0.25rem */
 }
 
-.hamburger.open span:nth-child(2) {
-  opacity: 0;
+.cardTitle {
+  font-family: 'Bruno Ace', sans-serif;
+  font-size: 0.6rem;
+  /* Reduced from 0.65rem */
+  font-weight: 400;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  color: white;
 }
 
-.hamburger.open span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+/* === MOBILE STYLES === */
+@media (max-width: 768px) {
+  .overlay {
+    width: 70vw;
+    /* Reduced from 80vw */
+    right: 15vw;
+    left: 15vw;
+  }
+
+  .overlayGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .cardImage {
+    height: 80px;
+    /* Reduced from 120px */
+  }
 }
 
+/* --- MOBILE MENU --- */
+.menuButton,
 .mobileMenu {
   display: none;
 }
 
-/* --- RESPONSIVE STYLES --- */
+@media (max-width: 768px) {
+  .overlay {
+    width: 80vw;
+    right: 5vw;
+    left: 5vw;
+  }
+
+  .overlayGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .cardImage {
+    height: 120px;
+  }
+}
+
 @media (max-width: 810px) {
   .navLinks {
     display: none;
@@ -119,32 +243,61 @@
 
   .menuButton {
     display: flex;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    position: relative;
+  }
+
+  .hamburger span {
+    height: 2px;
+    width: 100%;
+    background-color: white;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
   }
 
   .mobileMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: black;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--color-background);
+    gap: 2rem;
     transform: translateX(100%);
-    transition: transform 0.4s ease-in-out;
+    transition: transform 0.3s ease;
   }
 
   .mobileMenu.open {
     transform: translateX(0);
   }
+}
 
-  /* src/components/Navbar/Navbar.module.css */
-
-  .catalogButtonMobile {
-    /* We only need the extra style here */
-    margin-top: 20px;
-  }
+.navLink:hover {
+  transform: scale(1.3);
 }

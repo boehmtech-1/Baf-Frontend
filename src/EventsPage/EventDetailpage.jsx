@@ -330,14 +330,7 @@ const EventDetailPage = () => {
 
                             {event.registrationLink && event.status !== 'completed' && event.status !== 'cancelled' && (
                                 <div className={styles.cardActions}>
-                                    <MirrorButton
-                                        href={event.registrationLink}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={styles.registerButton}
-                                    >
-                                        Register for Event
-                                    </MirrorButton>
+
                                 </div>
                             )}
                         </div>

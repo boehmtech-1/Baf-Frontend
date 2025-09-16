@@ -1,10 +1,9 @@
-/* src/styles/BrandsSection.module.css */
 .brandsSection {
-  padding: 40px 0 100px;
+  padding: 40px 0 60px;
   background-color: var(--color-background);
-  overflow: visible;
-  position: relative;
   width: 100%;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .mainHeading {
@@ -12,18 +11,17 @@
   font-size: 70px;
   color: var(--color-white);
   text-align: center;
-  margin-bottom: 120px;
+  margin-bottom: 70px;
+  /* tighter gap */
+  z-index: 5;
   position: relative;
-  z-index: 20;
-  padding-top: 40px;
 }
 
 .scrollContainer {
-  height: 250vh;
-  /* Increased scroll area for smoother motion */
+  height: 130vh;
+  /* stretched scroll area for smoother spiral animation */
   width: 100%;
   position: relative;
-  margin-top: 0;
   overflow: visible;
 }
 
@@ -31,128 +29,143 @@
   position: sticky;
   top: 0;
   height: 100vh;
-  width: 100%;
-  perspective: 1400px;
+  perspective: 2200px;
+  /* deeper perspective */
   transform-style: preserve-3d;
-  overflow: visible;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .spiralPositioner {
-  position: relative;
   width: 100%;
   height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 10;
+  justify-content: center;
 }
 
 .spiralRotator {
   width: 1px;
   height: 1px;
+  position: relative;
   transform-style: preserve-3d;
   will-change: transform;
-  position: relative;
-  /* Force GPU acceleration for smoother animation */
   transform: translateZ(0);
   backface-visibility: hidden;
 }
 
+/* --- CARD STYLING --- */
 .brandCard {
   position: absolute;
-  width: 420px;
-  height: 280px;
-  border-radius: 16px;
+  width: 360px;
+  /* Increased from 320px */
+  height: 225px;
+  /* Increased from 200px */
+  border-radius: 18px;
   background-size: cover;
   background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  filter: brightness(0.85);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  filter: brightness(0.92);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
   backface-visibility: hidden;
   transform-origin: center;
-  transition: filter 0.3s ease;
-  margin-top: -140px;
-  margin-left: -210px;
-  /* Force GPU acceleration */
-  transform: translateZ(0);
+
+  margin-top: -112.5px;
+  /* half height */
+  margin-left: -180px;
+  /* half width */
+
+  transition:
+    filter 0.5s ease,
+    transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1),
+    /* Smoother easing */
+    opacity 0.6s ease;
+  will-change: transform, filter, opacity;
 }
 
 .brandCard:hover {
-  filter: brightness(1.1) !important;
-}
-
-/* Enhanced height difference visual effect */
-.brandCard:nth-child(1) {
-  filter: brightness(0.95);
-  z-index: 5;
-}
-
-.brandCard:nth-child(2) {
-  filter: brightness(0.88);
-  z-index: 4;
-}
-
-.brandCard:nth-child(3) {
-  filter: brightness(0.82);
-  z-index: 3;
-}
-
-.brandCard:nth-child(4) {
-  filter: brightness(0.88);
-  z-index: 4;
-}
-
-.brandCard:nth-child(5) {
-  filter: brightness(0.95);
-  z-index: 5;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.65);
 }
 
 .cardLogo {
-  width: 100px;
+  width: 85px;
+  /* Increased from 75px */
   height: auto;
-  transition: transform 0.3s ease;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  transition: transform 0.35s ease;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.65));
 }
 
 .brandCard:hover .cardLogo {
-  transform: scale(1.15);
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.7));
+  transform: scale(1.12);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.85));
 }
 
-/* Ticker styles */
+/* Depth brightness adjustments */
+.brandCard:nth-child(1) {
+  z-index: 5;
+  filter: brightness(0.95);
+}
+
+.brandCard:nth-child(2) {
+  z-index: 4;
+  filter: brightness(0.9);
+}
+
+.brandCard:nth-child(3) {
+  z-index: 3;
+  filter: brightness(0.85);
+}
+
+.brandCard:nth-child(4) {
+  z-index: 4;
+  filter: brightness(0.9);
+}
+
+.brandCard:nth-child(5) {
+  z-index: 5;
+  filter: brightness(0.95);
+}
+
+/* --- TICKER STYLES --- */
 .tickerContainer {
-  padding: 50px 0;
+  padding: 25px 0;
+  /* tighter padding */
   width: 100%;
   overflow: hidden;
   position: relative;
   z-index: 5;
-  margin-top: 80px;
+  margin-top: 10px;
+  /* reduced gap between spiral & ticker */
 }
 
 .tickerTrack {
   display: flex;
   width: fit-content;
-  animation: scroll 20s linear infinite;
+  animation: scroll 26s linear infinite;
+  /* slowed for butter-smooth drift */
   will-change: transform;
 }
 
 .tickerLogo {
   height: 35px;
   width: auto;
-  margin: 0 60px;
-  opacity: 0.7;
+  margin: 0 45px;
+  /* tighter spacing */
+  opacity: 0.75;
   filter: brightness(0.9);
-  transition: all 0.3s ease;
+  transition: transform 0.35s ease, opacity 0.35s ease;
 }
 
 .tickerLogo:hover {
   opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 @keyframes scroll {
@@ -165,103 +178,101 @@
   }
 }
 
-/* Smooth scroll behavior for the entire page */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Media queries */
+/* --- MEDIA QUERIES --- */
 @media (max-width: 1024px) {
   .brandCard {
-    width: 360px;
-    height: 240px;
-    margin-top: -120px;
-    margin-left: -180px;
+    width: 320px;
+    /* Increased from 280px */
+    height: 200px;
+    /* Increased from 175px */
+    margin-top: -100px;
+    margin-left: -160px;
   }
 
   .cardLogo {
-    width: 85px;
+    width: 75px;
+    /* Increased from 65px */
   }
 
   .stickyWrapper {
-    perspective: 1200px;
-  }
-
-  .mainHeading {
-    margin-bottom: 80px;
-    padding-top: 20px;
+    perspective: 1900px;
   }
 
   .scrollContainer {
-    height: 220vh;
+    height: 450vh;
   }
 }
 
 @media (max-width: 810px) {
   .mainHeading {
     font-size: 44px;
-    margin-bottom: 60px;
-    padding-top: 15px;
+    margin-bottom: 40px;
   }
 
   .scrollContainer {
-    height: 200vh;
+    height: 400vh;
   }
 
   .stickyWrapper {
-    perspective: 1000px;
-  }
-
-  .brandCard {
-    width: 320px;
-    height: 210px;
-    margin-top: -105px;
-    margin-left: -160px;
-  }
-
-  .cardLogo {
-    width: 75px;
-  }
-
-  .tickerLogo {
-    height: 28px;
-    margin: 0 40px;
-  }
-}
-
-@media (max-width: 480px) {
-  .brandsSection {
-    padding: 30px 0 80px;
+    perspective: 1600px;
   }
 
   .brandCard {
     width: 280px;
-    height: 180px;
-    margin-top: -90px;
+    /* Increased from 240px */
+    height: 175px;
+    /* Increased from 150px */
+    margin-top: -87.5px;
     margin-left: -140px;
   }
 
   .cardLogo {
     width: 65px;
-  }
-
-  .mainHeading {
-    font-size: 36px;
-    margin-bottom: 50px;
-    padding-top: 10px;
+    /* Increased from 55px */
   }
 
   .tickerLogo {
-    height: 24px;
-    margin: 0 25px;
-  }
-
-  .scrollContainer {
-    height: 180vh;
+    height: 28px;
+    margin: 0 30px;
   }
 }
 
-/* Reduced motion support */
+@media (max-width: 480px) {
+  .brandsSection {
+    padding: 25px 0 45px;
+  }
+
+  .scrollContainer {
+    height: 350vh;
+  }
+
+  .brandCard {
+    width: 240px;
+    /* Increased from 200px */
+    height: 150px;
+    /* Increased from 125px */
+    margin-top: -75px;
+    margin-left: -120px;
+    border-radius: 14px;
+  }
+
+  .cardLogo {
+    width: 55px;
+    /* Increased from 45px */
+  }
+
+  .mainHeading {
+    font-size: 34px;
+    margin-bottom: 28px;
+  }
+
+  .tickerLogo {
+    height: 22px;
+    margin: 0 18px;
+  }
+}
+
+/* --- REDUCED MOTION --- */
 @media (prefers-reduced-motion: reduce) {
   .spiralRotator {
     transform: none !important;
